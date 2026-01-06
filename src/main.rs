@@ -36,12 +36,14 @@ fn main() -> Result<()>{
             while decoder.receive_frame(&mut frame).is_ok(){
                 frame_count += 1;
                 println!(
-                    "Frame {:5} | PTS: {:?} | {}x{} | format: {:?}",
+                    "Frame {:5} | PTS: {:?} | {}x{} | format: {:?} | stride:{} | data len: {}",
                     frame_count,
                     frame.pts(),
                     frame.width(),
                     frame.height(),
-                    frame.format()
+                    frame.format(),
+                    frame.stride(1),
+                    frame.data(0).len()
                 );
             }
         }
